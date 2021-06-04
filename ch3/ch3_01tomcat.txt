@@ -1,0 +1,73 @@
+챕터 3 스프링 프로젝트 세팅 실습 (1) ; 이클립스 상에서 구동해보기
+
+프로젝트 세팅 단계에서는 아마도 maven 기준,
+여러 파일구조와 역할을 배우고
+특이한점이라면 pom.xml이 build.gradle 파일과 같은 것 같다.
+Dependency부분이 xml에 기입되었있다.
+
+!!중요
+"src의 resources의 application.properties의 정보대로"
+http://localhost:7000/login로 접속
+
+
+챕터 3 스프링 프로젝트 세팅 실습 (2); 외부서버에서 돌려보기
+서버에 스프링플젝을 작동시키기 위해선, JAVA, tomcat server를 터미널로 서버에 접속해서 설치하고
+현재의 스프링프로젝트를 FTP 프로그램인 파일질라로 ec2에 올린다
+
+앞서 이클립스 상에서 가이드에 따라, 톰캣깔고, jdk설정해서
+ war라는 web application archive를 생성한다.
+
+그리고, 이 war파일을 파일질라로 aws서버에 올리기에 앞써서, 
+서버에 openjdk를 깐다(내가 아는 jdk와의 가장큰 차이는 라이센스 정도라고 한다. 말그래돌 오픈이라서 한편으론 보편적인 버전으로 의미가 있다고 해석)
+
+과정은 ppt참고
+
+다만, 현재는 미러사이트가 지원안되는듯해서
+wget https://archive.apache.org/dist/tomcat/tomcat-8/v8.5.47/bin/apache-tomcat-8.5.47.tar.gz
+
+로 변경, 아파치 서버에서 직접 받는 방식이다.
+저장 위치는 홈(cd ~ 명령어로 이동)이고 나의 경우 처음 접속한 곳이었다.
+
+(추가) 무슨 의미가 있을까하지만, 결국 실패라, 보다 영상의 충실하여 네이버 미러사이트로 찾아봤으나, 영상버전은 없지만
+아래와 같이 진행
+
+sudo wget http://mirror.navercorp.com/apache/tomcat/tomcat-8/v8.5.66/bin/apache-tomcat-8.5.66.tar.gz
+
+그후 설명의 명렁어대로 압축파일을 해제하면 아마도 설정대로
+/opt/tomcat에 필요한 파일들이 생성되어있다.
+
+그후 유저 생성과 권한등을 피피티대로 설정한다.
+
+!!중요 하지만 나는 sudo systemctl enable tomcat 가 안되고 
+오키 질문도 답이없었다....(https://okky.kr/article/943781)
+
+차선으로 
+https://jiwontip.tistory.com/45?category=367314
+를 참고하였고 또 이 와중에 javac가 탐지 안되는 문제를 발생하여
+http://kny2013.blogspot.com/2019/07/jdk-javac.html
+를 참고하였다. 하지만 해답이 되지 않아 일단 패스하였다.
+
+형식이 다르지만 내 예상 나의 자바 풀경로
+/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.282.b08-1.amzn2.0.1.x86_64/jre/bin/java
+에서
+/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.282.b08-1.amzn2.0.1.x86_64
+
+했는데 아에 코어 명령어에 맛이가서 sudo 부터 안먹고, 모든 사용 가능 명령어가 삭제되서
+서버자체를 날려버림
+
+----해결책, 톰캣이 ppt명령어로 실행이 안되는 문제는 
+tomcat 폴더에서 아래와 같은 명령어로 직접 톰캣을 실행함으로서 해결가능
+
+cd /opt/tomcat
+sudo bin/startup.sh 
+- 기동 
+sudo bin/shutdown.sh
+- 중지
+
+그 다음
+우리집 ip에서 
+http://52.78.158.84:7000/login
+
+로 접속하면 됨.
+52.78.158.84이 외부ip
+

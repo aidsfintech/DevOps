@@ -1,0 +1,59 @@
+실습 1- 도커 사용하기
+
+일전에 도커로 지라 컨테이너를 만들었는데
+
+이 컨테이너도 큰 의미론 디렉토리인듯하면서 일종의 쉘로 작동해서
+
+docker -it jira-container /bin/bash
+기입시
+
+그 컨테이너로 '접속 가능'
+
+실습 2- 도커 이미지 만들기
+ 아마도 특정 컨테이너의 이미지인듯 보인다.
+
+우선 도커 파일 생성
+vi Dockerfile
+
+도커파일을 위한 요소들 가져오기
+
+ls
+cd /opt/tomcat/webapps
+cp ROOT.war ~
+cd ..
+
+sudo chmod 777 conf
+cd conf
+sudo chmod 777 server.xml
+cp server.xml ~
+
+cd ~
+docker build -t revew/aws
+docker image
+
+plus)
+만든 도커 이미지를 id를 통해 지우기
+docker rmi (id)
+
+도커 이미지 실행하기
+docker run --rm -d -p 8080:8080 review/aws
+
+현대 접속한 ip(서버의) 8080포트로 같은 서비스를 올리는듯함.
+같은 방법으로 아에 다른 ip(서버)에 같은 서비스 올릴수있을듯
+
+-- 도커 허브에 도커 이미지 올리기
+도커 로그인한뒤
+
+예시)
+docker tag review/aws:lastest bloodjino/review:0.0.1
+sudo docker push bloodjino/review:0.0.1
+bloodjino/review:0.0.1가 도커 허브에 등록될 이름이다.
+하면 아마도 기존에 깔린 도커 자동으로 푸쉬해주는듯하다.
+
+
+-- 새로운 인스턴스에 도커 설치 후 pull
+docker pull bloodjino/review:0.0.1
+docker run blabla
+
+참고로, 도커에 DB가 담겨있지 않기 때문에
+새로운 인스턴스가 rds랑 s3에 접근가능하도록 rds, s3 보안단계 설정

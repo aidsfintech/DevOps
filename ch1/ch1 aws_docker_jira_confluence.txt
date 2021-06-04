@@ -1,0 +1,112 @@
+강사의 정리본
+https://gitlab.com/bloodjino1/fastcampus-lecture-codes_aws-docker/-/tree/master/
+
+devops 의 대두
+- 개발와 운영의 유기적 연결을 지원하거나 중요시 하는  소프트웨어 개발 방법론
+=> 협업도구 필요, jira(애자일 기반); 
+지라는 일단 '협업툴', '프로젝트 이슈 관리툴'
+형상관리 툴(bitbucket)과의 연계가 된다고 한다. 
+그런 점에서 넓은 의미의 형상관리 툴이라고도 할수있는듯하다.
+얼추 CI/CD에 묶이는 개념들인듯
+
+추가
+https://ksy93.tistory.com/entry/Jira-Bitbucket-Jenkins
+
+단위가 되는
+'개발 프로세스(작업 흐름)'; Operations측의 요구계획서, 코드, 빌드, 테스트, 패키지(ex WAR), 릴리즈, 모니터링의 순환
+를 jira를 통해서 관리가능하다.
+
+기존의 엑셀, 파워포인, 보고서같은 것을 대체했다고 볼수있음
+무엇보다 현실에서 소통속에서 변질되거나 누락되는 정보를 최소화가능
+
+!!
+DDD(Domain Driven Design)- strategic design과 tactical design(각각 Domain model과 layered architecture~기술명세서, 혹은 개념설계와 프로그래밍을 위한 구체적 설계)
+요구계획서는 하늘에서 뚝 떨어지는 게 아니라, 실제 비즈니스 영역들(Business Domain별 expert)와의
+소통에서 만들어짐, 근데 전문적인 영역일수록, 실무자와 운영 및 개발자 간의 괴리가 상당했음.
+
+대체로 실무자쪽에서의 일방적인 Contexts_특정 상황이나 사건 그리고 이에 대한 선택지나 처리방법 등_ 제공과 요구로 인해 개발자는 개발에 있어 엄청난 비효율성과 반복작업 발생함.
+특히, 도메인별로 의미가 다른 동음이의어들도 상당한 문제를 일으켰다고함. 그래서 devops의 협업툴에서
+이러한 부분을 도메인별로 미리 정리하여 해소하기 위해 Ubiquitous Language를 만든다고 함.
+
+가령, 내가 상상하기에는 특정부서에서는 채권이 매출채권만 해당하는데, 다른 부서에서는 더 많은 의미로 사용한다면
+엄청난 오해나 금전적 피해가 발생할 수 도 있게됨
+
+여튼 이러한 '쌍방'의사소통을 통해서 주어진 domains별 contexts들을 비즈니스 목적별로 그룹핑해서 Context Map_Bounded Context 간 관계지도_와 이에 대응하는 Micro service로 대응
+이런 것들이 모여서 Domain Model이 생성됨, 
+
+https://happycloud-lee.tistory.com/94
+
+
+이러한 DevOps를 실현하기 위한 협업툴 및 개발환경
+1. jira and confluence
+2. aws / docker
+
+! 도커란 서버의 운영체제로 부터 자유로운, 일종의 통일된 서버 관리 툴쯤으로 일단 이해(마치 jvm처럼?)
+우분투, centos등 서로다른 종류의 서버도 2개(눈송이 서버들) 이상 관리하면
+
+구성시점(일종의 임대나 배포시점)은 거의 차이안나도, 서버종류별 프로세스와 버전 등으로 인해 방대한 문제 발생가능
+참고로 기존에는 이런 문제를 해결하기 위해 앤서블, 퍼핏, 셰프, 베이그런트 같은 툴을 통해 서버 운영기록을 나중에 재현할려고 했다함.
+
+근데 기본적으로 서버의 '구성 시점'이 들쭉날쭉하고 그 시점별로 모든 앱들의 버전이 다르니 비교하기도 힘들고 그렇게 효과적이진 못했나봄.
+그래서 도커 이미지는 이 구성시점의 버전들을 고정하고 통일해주는 것으로 일단 이해. 결국은 모든 서버가 같은 버전_도커 이미지가 생성된 시점을 기준으로_을 공유하는 것을 도움.
+https://www.44bits.io/ko/post/why-should-i-use-docker-container
+
+추가링크 
+https://m.blog.naver.com/PostView.nhn?blogId=complusblog&logNo=220980996544&proxyReferer=https:%2F%2Fwww.google.com%2F
+
+- 지라 aws ec2에 설치하기
+아틀라스 홈페이지 접속해서 거기 클라우드 서버 기반으로 사용_saas_도 가능하긴 하나,
+사내 자체구축을 위해서는 별도 서버 구축과정 필수
+
+1. ec2 서버 임대
+단순히 제공 홈페이지에서도 가입을 통해 사용가능하나, 실무에서는 서버상에서 설치 및 작동한다.
+따라서, 설명 대로 aws에서 ec2 t2.large를 임대한다.
+
+2.터미널로 ec2 서버접근, 나는 파워쉘로
+
+ssh -i D:\cosmos\Key\Myfirst.pem ec2-user@52.78.158.84
+
+!! 키가 저장된 폴더로 이동한 상태이면
+
+ssh -i Myfirst.pem ec2-user@52.78.158.84
+
+
+3. install docker
+
+sudo yum install docker-io   -- yes
+docker ps -a
+sudo systemctl start docker
+docker ps -a
+sudo setfacl -m user:ec2-user:rw /var/run/docker.sock
+docker ps -a
+
+4.install jira at 도커
+도커를 설치한다음 지라를 설치하는데,
+ 설명에 '지라 도커'라는 부분이 지라의 도커로서 지라 안에 도커가 있는 느낌이 나 혼동이 왔는데,
+도커는 의미상 하역꾼이고 지라 설치를 위한 도커의 맞춤형 컨테이너면 얼추 의미가 와닿는듯하다.
+
+설치 순서는 (혹시모를 컨테이너)삭제부터이다.
+삭제
+docker rm --volumes --force "jira-container"
+설치, 생성, 실행
+docker pull cptactionhank/atlassian-jira-software:latest
+
+docker create --restart=no --name "jira-container" \
+  --publish "8080:8080" \
+  --volume "hostpath:/var/atlassian/jira" \
+  --env "CATALINA_OPTS= -Xms1024m -Xmx1024m -Datlassian.plugins.enable.wait=300" \
+  cptactionhank/atlassian-jira-software:latest
+
+
+docker start --attach "jira-container"
+
+말고
+docker start jira-container
+
+로 기입하면 일단 브라우져로 접속 시, 셋업 화면은 뜬다. 그리고 영상대로 선택하는데
+21년 5월 기준, 서버 대신 클라우드로 바뀌어있고, second 뭐시기를 선택하게 하길래
+강의자료의 같이 나오던 confluence를 선택하고, 아틀라스상 가입같은거 기입하고 나면
+
+지라 설치가 진행되고, 설치 후 협업할 사람의 이메일을 요구하길래
+forgallaxytabfgt@gmail.com 
+기입하였다.
