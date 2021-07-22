@@ -6,12 +6,12 @@
 https://www.redhat.com/ko/devops/what-is-agile-methodology
 
 # requirements or tools
- Amazon Linux 2 AMI
- Jira and Confluence
- sts 4.0 or eclipse pluged
- bitbucket => https://bitbucket.org/devsacti/devsacti-springboot-webservice/src/master/ 
- Jenkins
- docker 
+ Amazon Linux 2 AMI\n
+ Jira and Confluence\n
+ sts 4.0 or eclipse pluged\n
+ bitbucket => https://bitbucket.org/devsacti/devsacti-springboot-webservice/src/master/ \n 
+ Jenkins \n
+ docker \n
 
 # core of chapters
 Chap 1. DevOps
