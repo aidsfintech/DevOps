@@ -6,6 +6,8 @@ maven과 spring을 활용한 웹서비스 구현
 
 https://bitbucket.org/devsacti/devsacti-springboot-webservice/src/master/
 
+!! 다만, chap 6에서 새로운 추가되는 코드에 DB 계정정보가 있기 때문에, chap3 이후는 푸시안함(Jenkins는 비공개 bitbucket repo활용) !!
+
 ## deploy
 /home/ec2-user에서 작업하던 스프링 부트 수업과 달리,
 
