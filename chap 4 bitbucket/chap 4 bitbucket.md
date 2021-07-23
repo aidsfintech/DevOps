@@ -66,6 +66,8 @@ synchronyze workspace 클릭 참고로 아직 올라간건 아니라고 한다.
 
 커밋을 위해선 '변동사항'이 있어야하므로, ReviewApplication.java에 주석 추가하면 자동으로 unstaged에 추가되고 인덱스추가후 commit and push
 
+**그동안 commit클릭 시 자동으로 된 것이지, pycharm에서도 초기 프로그램말고는, Add 해준다음 commit가능함**
+
 ## 3 develop의 변화를 master에 반영, pull request, pr을 날린다!
 ### 빗버킷의 pull requests 탭 클릭, create a pull request 클릭 후, 일단은 별다른 설정 무
 참고로, close branch 탭이란 개발 브랜치가 1회성인 경우 한번 합친 후 하위 가지가 사라진다고 한다. 
