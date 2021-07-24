@@ -16,8 +16,9 @@ bitbucket => https://bitbucket.org/devsacti/devsacti-springboot-webservice/src/m
  
 Jenkins
  
-docker
- 
+docker => https://hub.docker.com/repository/docker/devsacti/dockerpractice
+
+!! 스프링프로젝트에서 활용되는 계정정보가 여러모로 염려되어, 수업 도커이미지로 push, pull 실습
  
 # core of chapters
 Chap 1. DevOps
