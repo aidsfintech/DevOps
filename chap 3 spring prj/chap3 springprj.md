@@ -51,8 +51,8 @@ VO vs DTO,DAO
 * 또한 수업의 경우, lombok 없이 getter setter를 자동생성함
 
 ### 작동과정 from DB
-mapper, service  => controller
-repository, service => controller
+mapper, vo, service  => controller
+repository,Dao, service => controller
 
 ### Tip
 error 리스트로 보기
