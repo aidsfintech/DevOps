@@ -53,3 +53,7 @@ VO vs DTO,DAO
 ### 작동과정 from DB
 mapper, service  => controller
 repository, service => controller
+
+### Tip
+error 리스트로 보기
+window -> show views -> problems
