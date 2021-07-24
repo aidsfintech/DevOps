@@ -52,7 +52,7 @@ VO vs DTO,DAO
 
 ### 작동과정 from DB
 ex)
-mapper의 review.xml with ReviewVO.java(클래스), ReviewMapper.java(인터페이스) with Reviewservice.java  => controller 형태로 주로 구현할듯!
+mapper의 review.xml with ReviewVO.java(클래스), ReviewMapper.java(인터페이스) with Reviewservice.java  => controller 형태로 구현할듯
 
 작동과정은 이 역순으로
 controller가 ReviewService 호출, 인터페이스의 함수가 호출되는데,!! 아마도 마이베티스가 xml 내에 이 함수명과 동일한 id로 생성된 <select>~ 문과 지정된 VO로 모델로 전달해서 데이터를 얻음
@@ -60,6 +60,7 @@ controller가 ReviewService 호출, 인터페이스의 함수가 호출되는데
 
 repository,Dao, service => controller
 
+  
 ### Tip
 error 리스트로 보기
 window -> show views -> problems
