@@ -25,3 +25,18 @@ https://happycloud-lee.tistory.com/94
 같은 회사 상품인 atlassian인 conflunce(프로젝트 자료관리 툴?, saas by atlassian cloud), bitbucket(형상관리 툴)와 연계 용이
 
 Confluence와의 병용을 통해 기존의 엑셀, 파워포인트 등의 보고서 같은 것을 대체했다고 볼수있음, 소통 속에서 변질되거나 누락되는 정보를 최소화가능
+
+
+# chap 7 구조 summary
+
+## step1 confluence 와 Jira로 업무 관련 자료와 이슈 생성
+
+## step2 eclipse,AWS RDS, S3 스프링 프로젝트 개발
+
+## step3 bitbucket의 develop branch에 push, pr 그리고 merge
+여기서 바로 서버에 배포가능
+
+## step4
+### Jenkins를 통한 빌드와 배포
+
+### (독립적으로)도커 이미지 생성 및 push and pull 그리고 배포
