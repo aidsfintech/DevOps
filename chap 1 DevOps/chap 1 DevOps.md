@@ -27,11 +27,13 @@ https://happycloud-lee.tistory.com/94
 Confluence와의 병용을 통해 기존의 엑셀, 파워포인트 등의 보고서 같은 것을 대체했다고 볼수있음, 소통 속에서 변질되거나 누락되는 정보를 최소화가능
 
 
-# chap 7 구조 summary
+# devops summary based on chap 7
 
 ## step1 confluence 와 Jira로 업무 관련 자료와 이슈 생성
+프로젝트 참여자들이 같은 워크플로우 및 이슈 그리고 자료를 공유하면서 개발 운영
 
 ## step2 eclipse,AWS RDS, S3 스프링 프로젝트 개발
+maven, spring(sts), rds&s3, tomcat
 
 ## step3 bitbucket의 develop branch에 push, pr 그리고 merge
 여기서 바로 서버에 배포가능
